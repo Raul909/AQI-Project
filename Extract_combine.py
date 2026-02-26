@@ -72,7 +72,6 @@ if __name__ == "__main__":
             pm.insert(364, '-')
 
         for i in range(len(final_data)-1):
-            # final[i].insert(0, i + 1)
             final_data[i].insert(8, pm[i])
 
         with open('Data/Real-Data/real_' + str(year) + '.csv', 'a') as csvfile:
