@@ -1,4 +1,4 @@
-from Plot_AQI import avg_data_2013,avg_data_2014,avg_data_2015,avg_data_2016
+from Plot_AQI import avg_data
 import requests
 import sys
 import pandas as pd
@@ -7,7 +7,7 @@ import os
 import csv
 
 def met_data(month, year):
-    
+
     file_html = open('Data/Html_Data/{}/{}.html'.format(year,month), 'rb')
     plain_text = file_html.read()
 
@@ -65,8 +65,8 @@ if __name__ == "__main__":
         for month in range(1, 13):
             temp = met_data(month, year)
             final_data = final_data + temp
-            
-        pm = getattr(sys.modules[__name__], 'avg_data_{}'.format(year))()
+
+        pm = avg_data(year)
 
         if len(pm) == 364:
             pm.insert(364, '-')
@@ -84,19 +84,19 @@ if __name__ == "__main__":
                         flag = 1
                 if flag != 1:
                     wr.writerow(row)
-                    
+
     data_2013 = data_combine(2013, 600)
     data_2014 = data_combine(2014, 600)
     data_2015 = data_combine(2015, 600)
     data_2016 = data_combine(2016, 600)
-     
+
     total=data_2013+data_2014+data_2015+data_2016
-    
+
     with open('Data/Real-Data/Real_Combine.csv', 'w') as csvfile:
         wr = csv.writer(csvfile, dialect='excel')
         wr.writerow(
             ['T', 'TM', 'Tm', 'SLP', 'H', 'VV', 'V', 'VM', 'PM 2.5'])
         wr.writerows(total)
-        
-        
+
+
 df=pd.read_csv('Data/Real-Data/Real_Combine.csv')
