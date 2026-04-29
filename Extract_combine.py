@@ -63,7 +63,7 @@ if __name__ == "__main__":
                 ['T', 'TM', 'Tm', 'SLP', 'H', 'VV', 'V', 'VM', 'PM 2.5'])
         for month in range(1, 13):
             temp = met_data(month, year)
-            final_data = final_data + temp
+            final_data.extend(temp)
             
         pm = getattr(sys.modules[__name__], 'avg_data_{}'.format(year))()
 
@@ -88,7 +88,9 @@ if __name__ == "__main__":
     data_2015 = data_combine(2015, 600)
     data_2016 = data_combine(2016, 600)
      
-    total=data_2013+data_2014+data_2015+data_2016
+    total = []
+    for d in [data_2013, data_2014, data_2015, data_2016]:
+        total.extend(d)
     
     with open('Data/Real-Data/Real_Combine.csv', 'w') as csvfile:
         wr = csv.writer(csvfile, dialect='excel')
