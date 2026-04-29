@@ -20,28 +20,13 @@ def met_data(month, year):
                 a = tr.get_text()
                 tempD.append(a)
 
-    rows = len(tempD) / 15
+    for i in range(0, len(tempD), 15):
+        finalD.append(tempD[i:i + 15])
 
-    for times in range(round(rows)):
-        newtempD = []
-        for i in range(15):
-            newtempD.append(tempD[0])
-            tempD.pop(0)
-        finalD.append(newtempD)
-
-    length = len(finalD)
-
-    finalD.pop(length - 1)
-    finalD.pop(0)
+    finalD = finalD[1:-1]
 
     for a in range(len(finalD)):
-        finalD[a].pop(6)
-        finalD[a].pop(13)
-        finalD[a].pop(12)
-        finalD[a].pop(11)
-        finalD[a].pop(10)
-        finalD[a].pop(9)
-        finalD[a].pop(0)
+        finalD[a] = finalD[a][1:6] + finalD[a][7:10]
 
     return finalD
 
