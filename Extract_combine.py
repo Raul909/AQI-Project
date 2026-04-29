@@ -31,9 +31,10 @@ def met_data(month, year):
     return finalD
 
 def data_combine(year, cs):
+    mylist = []
     for a in pd.read_csv('Data/Real-Data/real_' + str(year) + '.csv', chunksize=cs):
         df = pd.DataFrame(data=a)
-        mylist = df.values.tolist()
+        mylist.extend(df.values.tolist())
     return mylist
 
 
