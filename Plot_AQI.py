@@ -50,8 +50,7 @@ if __name__=="__main__":
     plt.plot(range(0,364),lst2014,label="2014 data")
     plt.plot(range(0,365),lst2015,label="2015 data")
 
-    # Fix: lst2016 has 365 entries (full year), but range is only 121. Slice list to match.
-    plt.plot(range(0,121),lst2016[:121],label="2016 data")
+    plt.plot(range(0,365),lst2016,label="2016 data")
 
     plt.xlabel('Day')
     plt.ylabel('PM 2.5')
